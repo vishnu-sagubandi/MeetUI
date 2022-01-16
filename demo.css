@@ -43,7 +43,7 @@ body {
   width: 52rem;
   height: 3.75rem;
   display: flex;
-  padding: 0.94rem 1rem 0.94rem 1.88rem;
+  padding: 0.94rem 1rem;
   align-items: center;
   border-radius: 0.75rem;
   justify-content: space-between;
@@ -59,7 +59,7 @@ body {
   fill: #0087ff;
   width: 3.31rem;
   height: 1.88rem;
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 
 .left-header-box > .content {
