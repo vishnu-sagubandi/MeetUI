@@ -93,9 +93,103 @@
             </div>
           </div>
         </div>
-        <div class="main"></div>
-        <div class="footer"></div>
+        <div class="main">
+          <div class="videos-container"></div>
+        </div>
+        <div class="footer">
+          <div class="footer-box">
+            <div class="controls">
+              <div class="ctrl-btn-div">
+                <button
+                  class="MuiButtonBase-root ctrl-tgl-btn"
+                  tabindex="0"
+                  type="button"
+                  onclick="toggleMic(event)"
+                  id="micBtn"
+                >
+                  <span class="ctrl-btn-label disabled">
+                    <i class="fas fa-lg fa-microphone-alt-slash"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="ctrl-btn-div">
+                <button
+                  class="MuiButtonBase-root ctrl-tgl-btn"
+                  tabindex="0"
+                  type="button"
+                  onclick="toggleCamera(event)"
+                  id="cameraBtn"
+                >
+                  <span class="ctrl-btn-label disabled">
+                    <i class="fas fa-video-slash"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="ctrl-btn-div">
+                <button
+                  class="MuiButtonBase-root"
+                  tabindex="0"
+                  type="button"
+                  id="ssBtn"
+                  onclick="toggleSS(event)"
+                >
+                  <span class="ctrl-btn-label">
+                    <svg
+                      style="fill: #ffffff"
+                      viewBox="0 0 1024 1024"
+                      width="16"
+                      height="16"
+                    >
+                      <defs><style></style></defs>
+                      <path
+                        d="M668.928 859.904c28.416 0 51.456 22.4 51.456 50.048 0 27.648-23.04 50.048-51.456 50.048H360.192a50.752 50.752 0 01-51.456-50.048c0-27.648 23.04-50.048 51.456-50.048zM870.528 64A153.536 153.536 0 011024 217.536V656.32a153.536 153.536 0 01-153.536 153.536H153.6A153.536 153.536 0 010 656.32V217.536A153.536 153.536 0 01153.536 64H870.4zM491.136 258.432l-5.824 4.352-151.36 136.064a35.2 35.2 0 000 53.632 45.568 45.568 0 0059.648 0l79.168-71.04.128-.128V584.32c0 20.928 18.88 37.888 42.24 37.888 21.12 0 38.656-14.08 41.6-32.32l.512-5.568-.064-203.072 30.272 27.136 21.12 18.944 26.88 24.064a45.568 45.568 0 0059.648 0 35.2 35.2 0 000-53.632l-35.2-31.616-17.92-16.128-97.024-87.168a45.824 45.824 0 00-53.824-4.352z"
+                      ></path>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div class="ctrl-btn-div">
+                <button
+                  class="MuiButtonBase-root"
+                  tabindex="0"
+                  type="button"
+                  id="ptpBtn"
+                  onclick="togglePtps(event)"
+                >
+                  <span class="ctrl-btn-label">
+                    <i class="fas fa-user-friends fa-lg"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="ctrl-btn-div">
+                <button
+                  class="MuiButtonBase-root"
+                  tabindex="0"
+                  type="button"
+                  id="chatBtn"
+                  onclick="toggleChat(event)"
+                >
+                  <span class="ctrl-btn-label">
+                    <i class="far fa-comment-dots fa-xl"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="ctrl-btn-div">
+                <button
+                  class="MuiButtonBase-root hangup-btn"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span class="ctrl-btn-label">
+                    <i class="fas fa-phone fa-lg"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <script src="main.js"></script>
   </body>
 </html>
