@@ -44,13 +44,19 @@ function toggleChat(ev){
 
     if(chatOpen){
         //closeChat()
-        chatBox.style.display="none";
+        $(".sidebar").animate({
+                width: "toggle"
+        });
+        //chatBox.style.display="none";
         chatOpen=false;
         chatBtn.classList.remove("bg-blue");
     }
     else{
         //openChat()
-        chatBox.style.display="flex";
+        $(".sidebar").animate({
+                width: "toggle"
+        });
+        //chatBox.style.display="flex";
         chatOpen=true;
         chatBtn.classList.add("bg-blue");
     }
@@ -60,13 +66,19 @@ function togglePtps(ev){
     ev.preventDefault();
     if(ptpOpen){
         //closePtp()
-        ptpBox.style.display="none";
+        //ptpBox.style.display="none";
+        $(document).ready(function(){
+            $("#ptpBox").slideUp();
+        });
         ptpOpen=false;
         ptpBtn.classList.remove("bg-blue");
     }
     else{
         //openPtp()
-        ptpBox.style.display="flex";
+        $(document).ready(function(){
+            $("#ptpBox").slideDown();
+        });
+        //ptpBox.style.display="flex";
         ptpOpen=true;
         ptpBtn.classList.add("bg-blue");
     }
