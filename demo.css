@@ -56,7 +56,6 @@ body {
   border-radius: 0.7rem;
   display: flex;
   flex-flow: column nowrap;
-  flex: 1 1 0;
   overflow: hidden;
 }
 
