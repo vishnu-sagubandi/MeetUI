@@ -41,21 +41,33 @@ function toggleCamera(ev){
 
 function toggleChat(ev){
     ev.preventDefault();
-
     if(chatOpen){
         //closeChat()
-        $(".sidebar").animate({
-                width: "toggle"
-        });
         //chatBox.style.display="none";
+        if(ptpOpen){
+            $("#chatBox").animate({
+                height:'toggle'
+            },300);
+        }else{
+            $(".sidebar").animate({
+                width:'toggle'
+            },300,function(){chatBox.style.display='none'});
+        }
         chatOpen=false;
         chatBtn.classList.remove("bg-blue");
     }
     else{
         //openChat()
-        $(".sidebar").animate({
-                width: "toggle"
-        });
+        if(ptpOpen){
+            $("#chatBox").animate({
+                height:'toggle'
+            },200);
+        }else{
+            chatBox.style.display='flex'
+            $(".sidebar").animate({
+                width:'toggle'
+            },300);
+        }
         //chatBox.style.display="flex";
         chatOpen=true;
         chatBtn.classList.add("bg-blue");
@@ -67,17 +79,30 @@ function togglePtps(ev){
     if(ptpOpen){
         //closePtp()
         //ptpBox.style.display="none";
-        $(document).ready(function(){
-            $("#ptpBox").slideUp();
-        });
+        if(chatOpen){
+            $("#ptpBox").animate({
+                height:'toggle'
+            },300);
+        }else{
+            $(".sidebar").animate({
+                width:'toggle'
+            },300,function(){ptpBox.style.display='none'});
+        }
         ptpOpen=false;
         ptpBtn.classList.remove("bg-blue");
     }
     else{
         //openPtp()
-        $(document).ready(function(){
-            $("#ptpBox").slideDown();
-        });
+        if(chatOpen){
+            $("#ptpBox").animate({
+                height:'toggle'
+            },200);
+        }else{
+            ptpBox.style.display='flex'
+            $(".sidebar").animate({
+                width:'toggle'
+            },300);
+        }
         //ptpBox.style.display="flex";
         ptpOpen=true;
         ptpBtn.classList.add("bg-blue");

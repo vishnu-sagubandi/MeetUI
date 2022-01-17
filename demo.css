@@ -32,7 +32,7 @@ body {
 .container {
   height: 100%;
   display: flex;
-  padding: 1rem 0rem 1rem 1rem;
+  padding: 1rem;
   overflow: hidden;
   position: relative;
   flex-direction: column;
@@ -46,7 +46,7 @@ body {
   flex-flow: column nowrap;
   row-gap: 0.75rem;
   margin: 1rem;
-  margin-left: 0rem;
+  margin-left: -0.3rem;
 }
 
 .sidebar > .sidebox {
@@ -54,7 +54,6 @@ body {
   height: 100%;
   background: #182842;
   border-radius: 0.7rem;
-  margin-left: 0.7rem;
   display: flex;
   flex-flow: column nowrap;
 }
