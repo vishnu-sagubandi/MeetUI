@@ -150,7 +150,7 @@
               </div>
               <div class="ctrl-btn-div">
                 <button
-                  class="MuiButtonBase-root"
+                  class="MuiButtonBase-root bg-blue"
                   tabindex="0"
                   type="button"
                   id="ptpBtn"
@@ -163,7 +163,7 @@
               </div>
               <div class="ctrl-btn-div">
                 <button
-                  class="MuiButtonBase-root"
+                  class="MuiButtonBase-root bg-blue"
                   tabindex="0"
                   type="button"
                   id="chatBtn"
@@ -193,7 +193,7 @@
         <div class="sidebox" id="ptpBox">
           <div class="sb-header">
             <h2 class="MuiTypography-h2">Participants</h2>
-            <button class="close-btn" type="button">
+            <button class="close-btn" type="button" onclick="togglePtps(event)">
               <i class="fas fa-times dark-icon"></i>
             </button>
           </div>
@@ -202,12 +202,7 @@
         <div class="sidebox" id="chatBox">
           <div class="sb-header">
             <h2 class="MuiTypography-h2">Chat</h2>
-            <button
-              class="close-btn"
-              type="button"
-              disabled
-              onclick="toggleChat(event)"
-            >
+            <button class="close-btn" type="button" onclick="toggleChat(event)">
               <i class="fas fa-times dark-icon"></i>
             </button>
           </div>

@@ -1,12 +1,15 @@
 var micMuted=true;
 var cameraMuted=true;
 var screenShare=false;
-var ptpOpen=false;
-var chatOpen=false;
+var ptpOpen=true;
+var chatOpen=true;
 var cameraBtn=document.getElementById('cameraBtn');
 var ssBtn=document.getElementById('ssBtn');
 var chatBtn=document.getElementById('chatBtn');
 var ptpBtn=document.getElementById('ptpBtn');
+var chatBox=document.getElementById('chatBox');
+var ptpBox=document.getElementById('ptpBox');
+
 
 function toggleMic(ev){
     ev.preventDefault();
@@ -38,13 +41,16 @@ function toggleCamera(ev){
 
 function toggleChat(ev){
     ev.preventDefault();
+
     if(chatOpen){
         //closeChat()
+        chatBox.style.display="none";
         chatOpen=false;
         chatBtn.classList.remove("bg-blue");
     }
     else{
         //openChat()
+        chatBox.style.display="flex";
         chatOpen=true;
         chatBtn.classList.add("bg-blue");
     }
@@ -54,11 +60,13 @@ function togglePtps(ev){
     ev.preventDefault();
     if(ptpOpen){
         //closePtp()
+        ptpBox.style.display="none";
         ptpOpen=false;
         ptpBtn.classList.remove("bg-blue");
     }
     else{
         //openPtp()
+        ptpBox.style.display="flex";
         ptpOpen=true;
         ptpBtn.classList.add("bg-blue");
     }
