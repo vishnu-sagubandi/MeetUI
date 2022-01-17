@@ -190,14 +190,28 @@
         </div>
       </div>
       <div class="sidebar">
-        <div class="sidebox">
-          <div class="ptpHeader">
+        <div class="sidebox" id="ptpBox">
+          <div class="sb-header">
             <h2 class="MuiTypography-h2">Participants</h2>
             <button class="close-btn" type="button">
               <i class="fas fa-times dark-icon"></i>
             </button>
           </div>
-          <div class="ptpBox">PtpHeader</div>
+          <div class="inner-block ptpBody">Ptp body</div>
+        </div>
+        <div class="sidebox" id="chatBox">
+          <div class="sb-header">
+            <h2 class="MuiTypography-h2">Chat</h2>
+            <button
+              class="close-btn"
+              type="button"
+              disabled
+              onclick="toggleChat(event)"
+            >
+              <i class="fas fa-times dark-icon"></i>
+            </button>
+          </div>
+          <div class="inner-block chatBody">Chat body</div>
         </div>
       </div>
     </div>

@@ -40,18 +40,29 @@ body {
 }
 
 .sidebar {
-  width: 15.5rem;
+  display: flex;
   height: auto;
-  flex: 0 0 15.5rem;
+  flex: 0 0 auto;
   margin: 1rem;
   margin-left: -0.3rem;
+  flex-flow: column nowrap;
+  transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1) 0ms;
 }
 
 .sidebar > .sidebox {
-  width: 100%;
+  width: 15.5rem;
   height: 100%;
   background: #182842;
   border-radius: 0.7rem;
+  display: flex;
+  flex-flow: column nowrap;
+  transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1) 0ms;
+}
+
+.sidebox > .inner-block {
+  height: 100%;
+  display: flex;
+  width: 100%;
 }
 
 .header {
@@ -217,9 +228,10 @@ i {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 .ctrl-btn-div {
-  margin: 0 0.5rem;
+  margin: 0 1%;
 }
 
 button.bg-blue {
@@ -279,7 +291,7 @@ button.bg-blue {
   color: #ff4a4b;
 }
 
-.ptpHeader {
+.sb-header {
   display: flex;
   padding: 1.13rem 1rem;
   align-items: center;
@@ -312,11 +324,11 @@ button.bg-blue {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 0.23rem;
-  background-color: #9b9b9b;
+  background-color: #b3b3b3;
 }
 
 .close-btn:hover {
-  background-color: #9b9b9bb4;
+  background-color: #a3a3a3d0;
 }
 
 i.dark-icon {
@@ -325,4 +337,8 @@ i.dark-icon {
 
 i.fa-times {
   font-size: 0.8rem;
+}
+
+button:disabled {
+  cursor: not-allowed !important;
 }
