@@ -56,11 +56,50 @@ body {
   border-radius: 0.7rem;
   display: flex;
   flex-flow: column nowrap;
+  flex: 1 1 0;
+  overflow: hidden;
 }
 
 .sidebox > .inner-block {
   height: 100%;
   width: 100%;
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.sidebox > .inner-block > .innerbody {
+  height: 100%;
+  overflow: hidden auto;
+  direction: ltr;
+  scrollbar-color: #d4aa70 #e4e4e4;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+
+.sidebox > .inner-block > .innerbody::-webkit-scrollbar {
+  width: 0.3125rem;
+  background-color: #2b2b2c;
+  border-radius: 50px;
+}
+
+.sidebox > .inner-block > .innerbody::-webkit-scrollbar-track {
+  width: 5px;
+  margin: 0;
+  background-color: #00122e;
+  border-radius: 100px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.sidebox > .inner-block > .innerbody::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  background-color: #b5b5b5;
+  border: 1.4px solid transparent;
+  background-clip: content-box;
+}
+
+.ptp {
+  margin: 0.5rem 0;
+  height: 4rem;
 }
 
 .header {
