@@ -1,15 +1,14 @@
-var micMuted=true;
-var cameraMuted=true;
-var screenShare=false;
-var ptpOpen=true;
-var chatOpen=true;
-var cameraBtn=document.getElementById('cameraBtn');
-var ssBtn=document.getElementById('ssBtn');
-var chatBtn=document.getElementById('chatBtn');
-var ptpBtn=document.getElementById('ptpBtn');
-var chatBox=document.getElementById('chatBox');
-var ptpBox=document.getElementById('ptpBox');
-
+var micMuted=null;
+var cameraMuted=null;
+var screenShare=null;
+var ptpOpen=null;
+var chatOpen=null;
+var cameraBtn=null;
+var ssBtn=null;
+var chatBtn=null;
+var ptpBtn=null;
+var chatBox=null;
+var ptpBox=null;
 
 function toggleMic(ev){
     ev.preventDefault();
@@ -123,3 +122,77 @@ function toggleSS(ev){
         ssBtn.classList.add("bg-blue");
     }
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    micMuted=true;
+    cameraMuted=true;
+    screenShare=false;
+    ptpOpen=true;
+    chatOpen=true;
+    cameraBtn=document.getElementById('cameraBtn');
+    ssBtn=document.getElementById('ssBtn');
+    chatBtn=document.getElementById('chatBtn');
+    ptpBtn=document.getElementById('ptpBtn');
+    chatBox=document.getElementById('chatBox');
+    ptpBox=document.getElementById('ptpBox');
+
+    tippy("#chatBtn", {
+        content: "Chat",
+        animation: 'scale',
+        arrow: true,
+        placement:'top',
+        theme: 'light-border',
+      });
+
+    tippy("#ptpBtn", {
+        content: "Participants",
+        animation: 'scale',
+        arrow: true,
+        placement:'top',
+        theme: 'light-border',
+      });
+
+    tippy("#cameraBtn", {
+        content: "Camera",
+        animation: 'scale',
+        arrow: true,
+        placement:'top',
+        theme: 'light-border',
+      });
+
+    tippy("#micBtn", {
+        content: "Mic",
+        animation: 'scale',
+        arrow: true,
+        placement:'top',
+        theme: 'light-border',
+      });
+
+    tippy("#ssBtn", {
+        content: "Screenshare",
+        animation: 'scale',
+        arrow: true,
+        placement:'top',
+        theme: 'light-border',
+      });
+
+    tippy("#hangupBtn", {
+        content: "Hang up",
+        animation: 'scale',
+        arrow: true,
+        placement:'top',
+        theme: 'light-border',    
+      });
+    
+      tippy("div.content", {
+        content: '<strong>Bolded <span style="color: aqua;">content</span></strong>',
+        allowHTML: true,
+        animation: 'scale',
+        arrow: true,
+        placement:'bottom',
+        trigger: 'click',
+        theme: 'light-border',
+        interactive:true,
+        inertia: true,
+      });
+});

@@ -13,6 +13,14 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6/animations/scale.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6/themes/light-border.css"
+    />
   </head>
   <body>
     <div id="root">
@@ -180,6 +188,7 @@
                   class="MuiButtonBase-root hangup-btn"
                   tabindex="0"
                   type="button"
+                  id="hangupBtn"
                 >
                   <span class="ctrl-btn-label">
                     <i class="fas fa-phone fa-lg"></i>
@@ -219,7 +228,10 @@
         </div>
       </div>
     </div>
-    <script src="main.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+    <script></script>
   </body>
 </html>

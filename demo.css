@@ -341,7 +341,6 @@ button.bg-blue {
 
 .ctrl-btn-div > button.MuiButtonBase-root:hover {
   background-color: #4d618193;
-  transform: translateY(-5px);
 }
 
 .ctrl-btn-div > button.MuiButtonBase-root.hangup-btn {
