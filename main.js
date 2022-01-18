@@ -70,6 +70,7 @@ function toggleChat(ev){
         }
         //chatBox.style.display="flex";
         chatOpen=true;
+        chatBtn.classList.remove('alert-badge');
         chatBtn.classList.add("bg-blue");
     }
 }
