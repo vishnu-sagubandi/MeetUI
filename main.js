@@ -196,3 +196,40 @@ document.addEventListener('DOMContentLoaded', (event) => {
         inertia: true,
       });
 });
+
+
+window.addEventListener("load", function () {
+
+        // select parent of dish
+        let scenary = document.getElementsByClassName("Scenary")[0];
+
+        // create dish
+        let dish = new Dish(scenary);
+        dish.add();
+
+        // set controls (optional)
+        let controls = new Controls(dish, scenary);
+        //controls.append();
+
+        // render dish
+        dish.append();
+
+        // resize the cameras
+        dish.resize();
+
+        // resize event of window
+        // window.addEventListener("resize", function () {
+
+        //     // resize event to dimension cameras
+        //     dish.resize();
+
+        // });
+
+        const resizeObserver = new ResizeObserver(entries => 
+            dish.resize()
+        )
+
+        // start observing a DOM node
+        resizeObserver.observe(dish._dish);
+
+}, false);
