@@ -55,7 +55,7 @@ body {
 }
 
 .sidebar {
-  display: flex;
+  display: none;
   height: auto;
   flex: 0 0 auto;
   flex-flow: column nowrap;

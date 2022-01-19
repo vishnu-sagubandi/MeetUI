@@ -1,8 +1,8 @@
-var micMuted=null;
-var cameraMuted=null;
-var screenShare=null;
-var ptpOpen=null;
-var chatOpen=null;
+var micMuted=true;
+var cameraMuted=true;
+var screenShare=false;
+var ptpOpen=false;
+var chatOpen=false;
 var cameraBtn=null;
 var ssBtn=null;
 var chatBtn=null;
@@ -38,74 +38,113 @@ function toggleCamera(ev){
     }
 }
 
+function closeChat(){
+    if(ptpOpen){
+            $("#chatBox").animate({
+                height:'toggle'
+            },function(){
+                this.style.display='none';
+                chatOpen=false;
+                chatBtn.classList.remove("bg-blue");
+            });
+        }else{
+            $(".sidebar").animate({
+                width:'toggle'
+            },300,function(){
+                this.style.display='none';
+                chatBox.style.display='none';
+                chatOpen=false;
+                chatBtn.classList.remove("bg-blue");
+            });
+        }
+}
+
+function openChat(){
+    if(ptpOpen){
+            $("#chatBox").animate({
+                height:'toggle'
+            },200,function(){
+                this.style.display='flex';
+                chatOpen=true;
+                chatBtn.classList.remove('alert-badge');
+                chatBtn.classList.add("bg-blue");
+            });
+        }else{
+            ptpBox.style.display='none';
+            chatBox.style.display='flex';
+            $(".sidebar").animate({
+                width:'toggle'
+            },300,function(){
+                this.style.display='flex';
+                chatOpen=true;
+                chatBtn.classList.remove('alert-badge');
+                chatBtn.classList.add("bg-blue");
+            });
+        }
+}
+
+function closePtp(){
+    if(chatOpen){
+            $("#ptpBox").animate({
+                height:'toggle'
+            },function(){
+                this.style.display='none';
+                ptpOpen=false;
+                ptpBtn.classList.remove("bg-blue");
+            });
+        }else{
+            $(".sidebar").animate({
+                width:'toggle'
+            },300,function(){
+                this.style.display='none';
+                ptpBox.style.display='none';
+                ptpOpen=false;
+                ptpBtn.classList.remove("bg-blue");
+            });
+        }
+}
+
+function openPtp(){
+    if(chatOpen){
+            $("#ptpBox").animate({
+                height:'toggle'
+            },200,function(){
+                this.style.display='flex';
+                ptpOpen=true;
+                ptpBtn.classList.remove('alert-badge');
+                ptpBtn.classList.add("bg-blue");
+            });
+        }else{
+            chatBox.style.display='none';
+            ptpBox.style.display='flex';
+            $(".sidebar").animate({
+                width:'toggle'
+            },300,function(){
+                this.style.display='flex';
+                ptpOpen=true;
+                ptpBtn.classList.remove('alert-badge');
+                ptpBtn.classList.add("bg-blue");
+            });
+        }
+}
+
 function toggleChat(ev){
     ev.preventDefault();
     if(chatOpen){
-        //closeChat()
-        //chatBox.style.display="none";
-        if(ptpOpen){
-            $("#chatBox").animate({
-                height:'toggle'
-            },300);
-        }else{
-            $(".sidebar").animate({
-                width:'toggle'
-            },300,function(){chatBox.style.display='none'});
-        }
-        chatOpen=false;
-        chatBtn.classList.remove("bg-blue");
+        closeChat()
     }
     else{
-        //openChat()
-        if(ptpOpen){
-            $("#chatBox").animate({
-                height:'toggle'
-            },200);
-        }else{
-            chatBox.style.display='flex'
-            $(".sidebar").animate({
-                width:'toggle'
-            },300);
-        }
-        //chatBox.style.display="flex";
-        chatOpen=true;
-        chatBtn.classList.remove('alert-badge');
-        chatBtn.classList.add("bg-blue");
+        openChat()       
     }
 }
 
 function togglePtps(ev){
     ev.preventDefault();
     if(ptpOpen){
-        //closePtp()
-        //ptpBox.style.display="none";
-        if(chatOpen){
-            $("#ptpBox").animate({
-                height:'toggle'
-            },300);
-        }else{
-            $(".sidebar").animate({
-                width:'toggle'
-            },300,function(){ptpBox.style.display='none'});
-        }
-        ptpOpen=false;
-        ptpBtn.classList.remove("bg-blue");
+        closePtp()
     }
     else{
-        //openPtp()
-        if(chatOpen){
-            $("#ptpBox").animate({
-                height:'toggle'
-            },200);
-        }else{
-            ptpBox.style.display='flex'
-            $(".sidebar").animate({
-                width:'toggle'
-            },300);
-        }
-        //ptpBox.style.display="flex";
-        ptpOpen=true;
-        ptpBtn.classList.add("bg-blue");
+        openPtp()
     }
 }
 
@@ -124,11 +163,7 @@ function toggleSS(ev){
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    micMuted=true;
-    cameraMuted=true;
-    screenShare=false;
-    ptpOpen=true;
-    chatOpen=true;
+    
     cameraBtn=document.getElementById('cameraBtn');
     ssBtn=document.getElementById('ssBtn');
     chatBtn=document.getElementById('chatBtn');
@@ -136,56 +171,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     chatBox=document.getElementById('chatBox');
     ptpBox=document.getElementById('ptpBox');
 
-    tippy("#chatBtn", {
-        content: "Chat",
-        animation: 'scale',
-        arrow: true,
-        placement:'top',
-        theme: 'light-border',
-      });
-
-    tippy("#ptpBtn", {
-        content: "Participants",
-        animation: 'scale',
-        arrow: true,
-        placement:'top',
-        theme: 'light-border',
-      });
-
-    tippy("#cameraBtn", {
-        content: "Camera",
-        animation: 'scale',
-        arrow: true,
-        placement:'top',
-        theme: 'light-border',
-      });
-
-    tippy("#micBtn", {
-        content: "Mic",
-        animation: 'scale',
-        arrow: true,
-        placement:'top',
-        theme: 'light-border',
-      });
-
-    tippy("#ssBtn", {
-        content: "Screenshare",
-        animation: 'scale',
-        arrow: true,
-        placement:'top',
-        theme: 'light-border',
-      });
-
-    tippy("#hangupBtn", {
-        content: "Hang up",
-        animation: 'scale',
-        arrow: true,
-        placement:'top',
-        theme: 'light-border',    
-      });
     
-      tippy("div.content", {
-        content: '<strong>Bolded <span style="color: aqua;">content</span></strong>',
+    tippy("div.content", {
+        content: '<strong>Bolded <span style="color: orange;">content</span></strong>',
         allowHTML: true,
         animation: 'scale',
         arrow: true,
@@ -194,7 +182,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         theme: 'light-border',
         interactive:true,
         inertia: true,
-      });
+    });
 });
 
 
@@ -205,7 +193,6 @@ window.addEventListener("load", function () {
 
         // create dish
         let dish = new Dish(scenary);
-        dish.add();
 
         // set controls (optional)
         let controls = new Controls(dish, scenary);
