@@ -27,6 +27,12 @@ body {
   line-height: 1.43;
   letter-spacing: 0.01071em;
   background: #00122e;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
 }
 
 .MuiTypography-h2 {
