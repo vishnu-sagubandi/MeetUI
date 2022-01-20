@@ -6,7 +6,7 @@ class Dish {
     // default options
     _dish = false
     _conference = false
-    _cameras = 10
+    _cameras = 5
     _margin = 10
     _aspect = 0
     _video = false;
