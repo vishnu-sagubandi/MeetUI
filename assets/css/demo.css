@@ -310,9 +310,10 @@ i {
 .controls {
   color: #d8d8d9;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
+  max-width: 30rem;
 }
 .ctrl-btn-div {
   margin: 0 1%;
