@@ -276,7 +276,6 @@ window.addEventListener("load", function () {
                 dish.delete(`user-${user.uid}`)
             }
             dish.add(`user-${user.uid}`);
-            console.log(client.remoteUsers);
         }
 
         let handleUserPublished = async (user, mediaType) => {
