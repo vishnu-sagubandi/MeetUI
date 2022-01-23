@@ -6,7 +6,7 @@ class Dish {
     // default options
     _dish = false
     _conference = false
-    _cameras = 5
+    _cameras = 0
     _margin = 10
     _aspect = 0
     _video = false;
@@ -71,6 +71,7 @@ class Dish {
         // add cameras (only the necessary ones)
         for (let i = this._dish.children.length; i < this._cameras; i++) {
             let Camera = document.createElement('div')
+            Camera.id = 'me';
             this._dish.appendChild(Camera);
         }
 
@@ -147,15 +148,19 @@ class Dish {
     }
 
     // add new camera
-    add() {
+    add(id) {
         this._cameras++;
+        let Camera = document.createElement('div')
+        Camera.id = id;
+        this._dish.appendChild(Camera);
         this.render();
         this.resize();
     }
 
     // remove last camera
-    delete() {
+    delete(id) {
         this._cameras--;
+        document.getElementById(`user-${id}`).remove();
         this.render();
         this.resize();
     }

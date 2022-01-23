@@ -1,41 +1,60 @@
-var micMuted=true;
-var cameraMuted=true;
-var screenShare=false;
-var ptpOpen=false;
-var chatOpen=false;
-var cameraBtn=null;
-var ssBtn=null;
-var chatBtn=null;
-var ptpBtn=null;
-var chatBox=null;
-var ptpBox=null;
+let micMuted=true;
+let cameraMuted=true;
+let screenShare=false;
+let ptpOpen=false;
+let chatOpen=false;
+let micBtn=null;
+let cameraBtn=null;
+let ssBtn=null;
+let chatBtn=null;
+let ptpBtn=null;
+let chatBox=null;
+let ptpBox=null;
 
-function toggleMic(ev){
+
+//agora
+let localTracks = [];
+let remoteUsers = {};
+let client=null;
+
+async function toggleMic(ev){
     ev.preventDefault();
+    micBtn.disabled=true;
     if(micMuted){
+        await localTracks[0].setEnabled(true);
+        await client.publish(localTracks[0])
         micMuted=false;
         micBtn.children[0].classList.remove("disabled");
         micBtn.children[0].innerHTML=`<i class="fas fa-lg fa-microphone-alt"></i>`;
     }
     else{
+        await localTracks[0].setEnabled(false);
         micMuted=true;
         micBtn.children[0].classList.add("disabled");
         micBtn.children[0].innerHTML=`<i class="fas fa-lg fa-microphone-alt-slash"></i>`;
     }
+    micBtn.disabled=false;
 }
 
-function toggleCamera(ev){
+async function toggleCamera(ev){
     ev.preventDefault();
+    cameraBtn.disabled=true;
     if(cameraMuted){
+        await localTracks[1].setEnabled(true);
+        await client.publish(localTracks[1]);
+        localTracks[1].play(`me`);
         cameraMuted=false;
         cameraBtn.children[0].classList.remove("disabled");
         cameraBtn.children[0].innerHTML=`<i class="fas fa-video"></i>`;
     }
     else{
+        await localTracks[1].setEnabled(false);
+        localTracks[1].stop();
         cameraMuted=true;
         cameraBtn.children[0].classList.add("disabled");
         cameraBtn.children[0].innerHTML=`<i class="fas fa-video-slash"></i>`;
     }
+    cameraBtn.disabled=false;
 }
 
 function closeChat(){
@@ -163,7 +182,8 @@ function toggleSS(ev){
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    
+
+    micBtn=document.getElementById('micBtn');
     cameraBtn=document.getElementById('cameraBtn');
     ssBtn=document.getElementById('ssBtn');
     chatBtn=document.getElementById('chatBtn');
@@ -171,7 +191,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     chatBox=document.getElementById('chatBox');
     ptpBox=document.getElementById('ptpBox');
 
-    
+    chatBtn.disabled=true;
+    cameraBtn.disabled=true;
+    micBtn.disabled=true;
+
     tippy("div.content", {
         content: '<strong>Bolded <span style="color: orange;">content</span></strong>',
         allowHTML: true,
@@ -195,7 +218,7 @@ window.addEventListener("load", function () {
         let dish = new Dish(scenary);
 
         // set controls (optional)
-        let controls = new Controls(dish, scenary);
+        //let controls = new Controls(dish, scenary);
         //controls.append();
 
         // render dish
@@ -211,6 +234,78 @@ window.addEventListener("load", function () {
         //     dish.resize();
 
         // });
+
+        const APP_ID = '9f2aaa708bcb48ca891cd5163695051e'
+        const TOKEN = '0069f2aaa708bcb48ca891cd5163695051eIADEwPOxxmudEI1iARi9rCbCE5AspP/lQ80n/uoGoq8m86DfQtYAAAAAEADC8VeADCzuYQEAAQALLO5h'
+        const CHANNEL = 'demo'
+        let UID;
+
+        client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
+
+        let joinAndDisplayLocalStream = async () => {
+            client.on('user-joined', handleUserJoined);
+            client.on('user-published', handleUserPublished);
+            client.on('user-left', handleUserLeft);
+
+            UID = await client.join(APP_ID,CHANNEL,TOKEN,null);
+
+            dish.add(`me`);
+
+            localTracks = await AgoraRTC.createMicrophoneAndCameraTracks();
+
+            if(micMuted){
+                await localTracks[0].setEnabled(false);
+            }else{
+                client.publish(localTracks[0])
+            }
+            micBtn.disabled=false;
+
+            if(cameraMuted){
+                await localTracks[1].setEnabled(false);
+            }else{
+                localTracks[1].play(`me`);
+                await client.publish(localTracks[1]) 
+            }
+            cameraBtn.disabled=false;
+        }
+
+        let handleUserJoined = async (user)=>{
+            remoteUsers[user.uid]=user;
+            let player = document.getElementById(`user-${user.uid}`)
+            if (player != null){
+                dish.delete(`user-${user.uid}`)
+            }
+            dish.add(`user-${user.uid}`);
+            console.log(client.remoteUsers);
+        }
+
+        let handleUserPublished = async (user, mediaType) => {
+            remoteUsers[user.uid] = user;
+            await client.subscribe(user, mediaType)
+
+            if (mediaType === 'video'){
+                let player = document.getElementById(`user-${user.uid}`)
+                if (player == null){
+                    dish.add(`user-${user.uid}`);
+                    console.log('User joined');
+                }
+
+                user.videoTrack.play(`user-${user.uid}`)
+            }
+
+            if (mediaType === 'audio'){
+                user.audioTrack.play()
+            }
+        }
+
+        let handleUserLeft = async (user) => {
+            console.log("User left")
+            delete remoteUsers[user.uid];
+            dish.delete(user.uid);
+        }
+
+        joinAndDisplayLocalStream();
+
 
         const resizeObserver = new ResizeObserver(entries => 
             dish.resize()
