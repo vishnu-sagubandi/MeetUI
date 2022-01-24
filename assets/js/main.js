@@ -236,7 +236,7 @@ window.addEventListener("load", function () {
         // });
 
         const APP_ID = '9f2aaa708bcb48ca891cd5163695051e'
-        const TOKEN = '0069f2aaa708bcb48ca891cd5163695051eIADEwPOxxmudEI1iARi9rCbCE5AspP/lQ80n/uoGoq8m86DfQtYAAAAAEADC8VeADCzuYQEAAQALLO5h'
+        const TOKEN = '0069f2aaa708bcb48ca891cd5163695051eIAAEna2ym6DypkVa+7WrVb/M9a6pDxfko4dPMbIbZizzkKDfQtYAAAAAEABfDyp7jfHvYQEAAQCM8e9h'
         const CHANNEL = 'demo'
         let UID;
 
@@ -303,7 +303,17 @@ window.addEventListener("load", function () {
             dish.delete(user.uid);
         }
 
-        joinAndDisplayLocalStream();
+        let leaveAndRemoveLocalStream = async () => {
+            for (let i=0; localTracks.length > i; i++){
+                localTracks[i].stop()
+                localTracks[i].close()
+            }
+
+            remoteUsers={}
+
+            await client.leave();
+            //window.open('/', '_self');
+        }
 
 
         const resizeObserver = new ResizeObserver(entries => 
@@ -312,5 +322,8 @@ window.addEventListener("load", function () {
 
         // start observing a DOM node
         resizeObserver.observe(dish._dish);
+
+        joinAndDisplayLocalStream();
+        document.getElementById('hangupBtn').addEventListener('click',leaveAndRemoveLocalStream);
 
 }, false);
